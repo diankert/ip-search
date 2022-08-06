@@ -2,6 +2,7 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "ip-search-backend": "packages/ip-search-backend",
     "ip-search-frontend": "packages/ip-search-frontend"
   }
 }
