@@ -32,32 +32,33 @@ export function MyComponent() {
         // instead of a catch() block so that we don't swallow
         // exceptions from actual bugs in components.
         (error) => {
-            setError(error);
             setIsLoading(true);
+            setError(error);
         }
       );
   };
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div>Error</div>;
   } else if (!isLoading) {
     return (
         <div className="App">
-          <LoadingSpinner />
+          <LoadingSpinner/>
         </div>
       );
   } else {
     return (
       <div>
-        <input readOnly value={items?.country}></input>
+        <input className='searchInputStyling' maxLength={15} value={query} onChange={(e) => handleChange(e)}></input>
+        <button className='buttonStyling' onClick={submit}>Suchen</button>
         <br></br>
-        <input readOnly value={items?.city}></input>
-        <input
-          maxLength={15}
-          value={query}
-          onChange={(e) => handleChange(e)}
-        ></input>
-        <button  onClick={submit}>Suchen</button>
+        <br></br>
+        <br></br>
+        <label style={{fontFamily: "Arial", fontWeight: "lighter", marginRight: "30px", padding:"7px", paddingRight: "10px", backgroundColor: "rgb(233, 198, 83)", borderRadius: "4px"}}>city:</label>
+        <input className='inputStyling' value={items?.city}></input>
+        <br></br>
+        <label style={{fontFamily: "Arial", fontWeight: "lighter", marginRight: "9px", padding:"7px", backgroundColor: "rgb(233, 198, 83)", borderRadius: "4px"}}>Contry:</label>
+        <input className='inputStyling' value={items?.country}></input>
       </div>
     );
     

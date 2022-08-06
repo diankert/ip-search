@@ -1,21 +1,28 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { resolve } from 'path';
 import { useState } from 'react';
-import styles from './app.module.css';
 import {MyComponent} from './my-component';
 
+
 export function App() {
-  const greeting = 'Hello world 2!';
+  const greeting = 'IP-Search';
 
   return (
     <>
-      <h1>{greeting}</h1>
-      <MyComponent></MyComponent>
+    <div >
+      <span className="box">
+        <h1 style={{fontFamily: "Arial", fontWeight: "lighter"}} >{greeting}</h1>
+        <br></br>
+        <h4 style={{fontFamily: "Arial", fontWeight: "lighter"}}>Search any IP Address</h4>
+      </span>
+        <div className='mainComponentDiv'>
+          <MyComponent></MyComponent>
+        </div>
+    </div>
       <div />
     </>
   );
 
 }
-
 
 export default App;
