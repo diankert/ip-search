@@ -10,22 +10,22 @@ separat gestartet werden.
 
 ## Start über Nx Schaltfläche:
 
-###### Backend
-ip-search-backend
-	-> serve	
-		-> production -> Execute Task
-
-###### Frontend
-ip-search-frontend
-	-> serve	
-		-> development -> Execute Task
+Backend
+- ip-search-backend
+	- serve	
+		- production -> Execute Task
+ 
+Frontend
+- ip-search-frontend
+	- serve	
+		- development -> Execute Task
 		
 ## Alternativ können folgende Befehle in der cmd eingegeben werden
 
-###### Backend
+Backend
 nx run ip-search-backend:serve:production
 
-###### Frontend
+Frontend
 nx run ip-search-frontend:serve:development
 
 ## Mögliche Verbesserungen / ToDos
