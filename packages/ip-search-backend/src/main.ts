@@ -15,7 +15,13 @@ app.get('/api', (req, res) => {
   
   axios.get(endpoint)
   .then(ipApiRequest => {
-    setTimeout(() => res.send(ipApiRequest.data), 2000);
+    if(ipApiRequest.data.status === "fail"){
+       setTimeout(() => res.send(), 2000);
+    }
+    else
+    {
+      setTimeout(() => res.send(ipApiRequest.data), 2000);
+    }
   })
   .catch(err => {
     console.log('Error: ', err.message);

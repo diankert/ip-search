@@ -1,5 +1,5 @@
 import { useState, useEffect, ChangeEvent } from 'react';
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from './LoadingSpinner';
 
 interface ResponseType {
   country: string;
@@ -7,13 +7,19 @@ interface ResponseType {
 }
 
 export function MyComponent() {
-  const [error, setError] = useState();
+  const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [query, setquery] = useState('');
   const [items, setItems] = useState<ResponseType>();
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setquery(e.target.value);
+  };
+
+  const cancelValue = () =>{
+    setquery("");
+    setIsVisible(false);
   };
 
   const submit = () => {
@@ -25,42 +31,103 @@ export function MyComponent() {
       .then(
         (result) => {
           setItems(result);
-          setIsLoading(true)
-          console.log('Result: ', result);
+          setIsLoading(true);
+          setIsVisible(true);
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
-            setIsLoading(true);
-            setError(error);
+          setError(true);
+          setError(error);
+          setIsVisible(false);
         }
       );
   };
 
   if (error) {
-    return <div>Error</div>;
-  } else if (!isLoading) {
     return (
-        <div className="App">
-          <LoadingSpinner/>
-        </div>
-      );
-  } else {
-    return (
-      <div>
-        <input className='searchInputStyling' maxLength={15} value={query} onChange={(e) => handleChange(e)}></input>
-        <button className='buttonStyling' onClick={submit}>Suchen</button>
-        <br></br>
-        <br></br>
-        <br></br>
-        <label style={{fontFamily: "Arial", fontWeight: "lighter", marginRight: "30px", padding:"7px", paddingRight: "10px", backgroundColor: "rgb(233, 198, 83)", borderRadius: "4px"}}>city:</label>
-        <input className='inputStyling' value={items?.city}></input>
-        <br></br>
-        <label style={{fontFamily: "Arial", fontWeight: "lighter", marginRight: "9px", padding:"7px", backgroundColor: "rgb(233, 198, 83)", borderRadius: "4px"}}>Contry:</label>
-        <input className='inputStyling' value={items?.country}></input>
+      <div className="myComponentStyling">
+        <h2 className="h2Tag">invalid query for IP {query}</h2>
       </div>
     );
-    
+  } else if (!isLoading) {
+    return (
+      <div className="App">
+        <LoadingSpinner />
+      </div>
+    );
+  } else {
+    return (
+      <div className="myComponentStyling">
+        <div className="warpperResultDiv">
+          <input
+            className="searchInputStyling"
+            value={query}
+            onChange={(e) => handleChange(e)}
+            minLength={7}
+            maxLength={15}
+            required
+            pattern="^((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])$"
+          ></input>
+          <button className="buttonStyling" onClick={submit}>
+            Search
+          </button>
+          <button className="buttonStyling" onClick={cancelValue}>
+          Cancel
+            </button>
+        </div>
+        <div className="mainResultDiv">
+          <div
+            className="labelDiv"
+            style={{ visibility: isVisible ? 'visible' : 'hidden' }}
+          >
+            <label
+              style={{
+                fontFamily: 'Arial',
+                fontWeight: 'bold',
+                backgroundColor: 'rgb(233, 198, 83)',
+                borderRadius: '4px',
+                margin: '25px 25px 25px 0',
+                padding: '6px',
+                width: '100px',
+                textAlign: 'center',
+              }}
+            >
+              city:
+            </label>
+
+            <label
+              style={{
+                fontFamily: 'Arial',
+                fontWeight: 'bold',
+                backgroundColor: 'rgb(233, 198, 83)',
+                borderRadius: '4px',
+                margin: '25px 25px 25px 0',
+                padding: '6px',
+                width: '100px',
+                textAlign: 'center',
+              }}
+            >
+              Country:
+            </label>
+          </div>
+          <div
+            className="labelDiv"
+            style={{ visibility: isVisible ? 'visible' : 'hidden' }}
+          >
+            <input
+              disabled
+              readOnly
+              className="cityInputStyling"
+              value={items?.city}
+            ></input>
+            <input
+              disabled
+              readOnly
+              className="contryInputStyling"
+              value={items?.country}
+            ></input>
+          </div>
+        </div>
+      </div>
+    );
   }
 }

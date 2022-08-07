@@ -9,15 +9,11 @@ export function App() {
 
   return (
     <>
-    <div >
-      <span className="box">
-        <h1 style={{fontFamily: "Arial", fontWeight: "lighter"}} >{greeting}</h1>
+    <div className='mainComponentDiv'>
+        <h1 className='headerText'>{greeting}</h1>
         <br></br>
-        <h4 style={{fontFamily: "Arial", fontWeight: "lighter"}}>Search any IP Address</h4>
-      </span>
-        <div className='mainComponentDiv'>
+        <h4 className='headerText'>Search any IP Address</h4>
           <MyComponent></MyComponent>
-        </div>
     </div>
       <div />
     </>
