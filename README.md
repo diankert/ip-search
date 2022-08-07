@@ -23,10 +23,14 @@ separat gestartet werden.
 ## Alternativ können folgende Befehle in der cmd eingegeben werden
 
 **Backend**
-> nx run ip-search-backend:serve:production
+```
+nx run ip-search-backend:serve:production
+```
 
 **Frontend**
-> nx run ip-search-frontend:serve:development
+```
+nx run ip-search-frontend:serve:development
+```
 
 ## Mögliche Verbesserungen / ToDos
 
