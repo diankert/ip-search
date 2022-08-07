@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { resolve } from 'path';
-import { useState } from 'react';
 import {MyComponent} from './my-component';
 
 

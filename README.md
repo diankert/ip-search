@@ -44,3 +44,5 @@ wieder zu erhalten.
 
 - Ebenfalls sollten Test erstellt werden um die Qualität der App und Funktionen zu Testen und um mögliche Fehler
 zu unterbinden.
+
+- Css Klassen könnten durch Selectoren reduziert werden.

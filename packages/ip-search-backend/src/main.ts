@@ -1,25 +1,21 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
 import * as express from 'express';
 
 const app = express();
 const axios = require('axios');
 
 app.get('/api', (req, res) => {
-  console.log('ip: ', req.query.ip);
   const ip = req.query.ip;
   const endpoint = `http://ip-api.com/json/${ip}?fields=status,message,country,city,query`;
   
   axios.get(endpoint)
   .then(ipApiRequest => {
     if(ipApiRequest.data.status === "fail"){
-       setTimeout(() => res.send(), 2000);
+      // There is a timeout so you can see the loading spinner
+      setTimeout(() => res.send(), 2000);
     }
     else
     {
+      // There is a timeout so you can see the loading spinner
       setTimeout(() => res.send(ipApiRequest.data), 2000);
     }
   })

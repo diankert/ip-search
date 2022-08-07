@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import LoadingSpinner from './LoadingSpinner';
 
 interface ResponseType {
@@ -9,22 +9,22 @@ interface ResponseType {
 export function MyComponent() {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [query, setquery] = useState('');
+  const [query, setQuery] = useState('');
   const [items, setItems] = useState<ResponseType>();
   const [isVisible, setIsVisible] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setquery(e.target.value);
+    setQuery(e.target.value);
   };
 
-  const cancelValue = () =>{
-    setquery("");
+  const cancelValue = () => {
+    setQuery('');
     setIsVisible(false);
   };
 
   const submit = () => {
     setIsLoading(false);
-    setquery(query);
+    setQuery(query);
     const url = `/api?ip=${query}`;
     fetch(url)
       .then((res) => res.json())
@@ -64,50 +64,21 @@ export function MyComponent() {
             onChange={(e) => handleChange(e)}
             minLength={7}
             maxLength={15}
-            required
-            pattern="^((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])$"
           ></input>
           <button className="buttonStyling" onClick={submit}>
             Search
           </button>
           <button className="buttonStyling" onClick={cancelValue}>
-          Cancel
-            </button>
+            Cancel
+          </button>
         </div>
         <div className="mainResultDiv">
           <div
             className="labelDiv"
             style={{ visibility: isVisible ? 'visible' : 'hidden' }}
           >
-            <label
-              style={{
-                fontFamily: 'Arial',
-                fontWeight: 'bold',
-                backgroundColor: 'rgb(233, 198, 83)',
-                borderRadius: '4px',
-                margin: '25px 25px 25px 0',
-                padding: '6px',
-                width: '100px',
-                textAlign: 'center',
-              }}
-            >
-              city:
-            </label>
-
-            <label
-              style={{
-                fontFamily: 'Arial',
-                fontWeight: 'bold',
-                backgroundColor: 'rgb(233, 198, 83)',
-                borderRadius: '4px',
-                margin: '25px 25px 25px 0',
-                padding: '6px',
-                width: '100px',
-                textAlign: 'center',
-              }}
-            >
-              Country:
-            </label>
+            <label className="lable">City:</label>
+            <label className="lable">Country:</label>
           </div>
           <div
             className="labelDiv"
@@ -122,7 +93,7 @@ export function MyComponent() {
             <input
               disabled
               readOnly
-              className="contryInputStyling"
+              className="countryInputStyling"
               value={items?.country}
             ></input>
           </div>
