@@ -34,8 +34,8 @@ nx run ip-search-frontend:serve:development
 
 ## Mögliche Verbesserungen / ToDos
 
-- Der Userinput sollte während der Eigabe auf die konvention geprüft werden um so mögliche Fehleingaben zu verhindern.
-Um die Überprüfung zu Realisieren kann z.B Regex genutzt werden. 
+- Der Userinput sollte während der Eingabe auf die Konvention geprüft werden um so mögliche Fehleingaben zu verhindern.
+Um die Überprüfung zu realisieren kann z.B Regex genutzt werden. 
 
 - Das Absenden der Abfrage nur mit gültigen Werten, Search Button solange disabled bis Eingabe valide ist. 
 
@@ -43,6 +43,6 @@ Um die Überprüfung zu Realisieren kann z.B Regex genutzt werden.
 wieder zu erhalten. 
 
 - Ebenfalls sollten Test erstellt werden um die Qualität der App und Funktionen zu Testen und um mögliche Fehler
-zu unterbinden.
+zu finden.
 
-- Css Klassen könnten durch Selectoren reduziert werden.
+- Css Klassen könnten durch Selektoren reduziert werden.

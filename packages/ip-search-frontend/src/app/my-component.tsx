@@ -5,11 +5,12 @@ interface ResponseType {
   country: string;
   city: string;
 }
+const emptySearchTerm = '';
 
 export function MyComponent() {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(emptySearchTerm);
   const [items, setItems] = useState<ResponseType>();
   const [isVisible, setIsVisible] = useState(false);
 
@@ -18,7 +19,7 @@ export function MyComponent() {
   };
 
   const cancelValue = () => {
-    setQuery('');
+    setQuery(emptySearchTerm);
     setIsVisible(false);
   };
 
@@ -31,6 +32,7 @@ export function MyComponent() {
       .then(
         (result) => {
           setItems(result);
+          query === emptySearchTerm ? setQuery(result.query) : query;
           setIsLoading(true);
           setIsVisible(true);
         },
@@ -45,7 +47,7 @@ export function MyComponent() {
   if (error) {
     return (
       <div className="myComponentStyling">
-        <h2 className="h2Tag">invalid query for IP {query}</h2>
+        <h2 className="errorMessage">invalid query for IP {query}</h2>
       </div>
     );
   } else if (!isLoading) {
@@ -77,8 +79,8 @@ export function MyComponent() {
             className="labelDiv"
             style={{ visibility: isVisible ? 'visible' : 'hidden' }}
           >
-            <label className="lable">City:</label>
-            <label className="lable">Country:</label>
+            <label className="label">City:</label>
+            <label className="label">Country:</label>
           </div>
           <div
             className="labelDiv"
